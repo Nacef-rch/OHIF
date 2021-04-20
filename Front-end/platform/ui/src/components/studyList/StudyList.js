@@ -131,7 +131,7 @@ function StudyList(props) {
         })}
       </div>
       <div className=" table-head">
-        <div className="align">
+        <div className="align-head">
           <div className="long">
 
           <label >{long} StudyLists </label>
@@ -192,6 +192,7 @@ function StudyList(props) {
               PatientID={study.PatientID || ''}
               PatientName={study.PatientName || ''}
               StudyDate={study.StudyDate}
+              series={study.Series}
               StudyDescription={study.StudyDescription || ''}
               StudyInstanceUID={study.StudyInstanceUID}
               displaySize={displaySize}
@@ -222,6 +223,7 @@ StudyList.propTypes = {
     modalities: PropTypes.string.isRequired,
     StudyDescription: PropTypes.string.isRequired,
     patientNameOrId: PropTypes.string.isRequired,
+    Series: PropTypes.any,
     accessionOrModalityOrDescription: PropTypes.string.isRequired,
     allFields: PropTypes.string.isRequired,
     studyDateTo: PropTypes.any,
@@ -242,6 +244,7 @@ function TableRow(props) {
     PatientID,
     PatientName,
     StudyDate,
+    Series,
     StudyDescription,
     StudyInstanceUID,
     onClick: handleClick,
@@ -275,30 +278,21 @@ function TableRow(props) {
       className="card-body"
 
     >
-      <div >
+      <img src="https://www.imageriemedicalemc3.fr/wp-content/uploads/2017/09/crane-1-300x297.jpg" height='180' style={{width:'100%;'}}/>
+      <div className='align-t' >
         <label>Patient Name :</label>
         {PatientName || `(${t('Empty')})`}
+ <div><label>Patient ID :</label>{PatientID}</div>
 
-        <div><label>Patient ID :</label>{PatientID}</div>
       </div>
       <div>
 
-        <div>
-          {/* DESCRIPTION */}
-          <div className='hr'></div>
-          <div className="description">
 
 
-            <img src="https://www.imageriemedicalemc3.fr/wp-content/uploads/2017/09/crane-1-300x297.jpg" height='130' width="140"/>
-          </div>
-
-          {/* MODALITY & ACCESSION */}
-
-        </div>
       </div>
 
       {/* DATE */}
-      <div className="date"><div className='hr'></div> <label >Date :</label>{StudyDate}</div>
+
     </div>
   );
 
@@ -361,9 +355,9 @@ function TableRow(props) {
   const rowTemplate = getContentFromUseMediaValue(
     displaySize,
     {
-      large: largeRowTemplate,
+      large: mediumRowTemplate,
       medium: mediumRowTemplate,
-      small: smallRowTemplate,
+      small: mediumRowTemplate,
     },
     smallRowTemplate
   );

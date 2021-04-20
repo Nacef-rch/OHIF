@@ -1,5 +1,5 @@
 window.config = {
-  routerBasename: '/pwa',
+  routerBasename: '/',
   showStudyList: true,
   servers: {
     dicomWeb: [

@@ -93,16 +93,20 @@ function TableSearchFilter(props) {
             {inputType === 'text' && (
               <input
                 type="text"
+                placeholder='Filtrer'
                 id={`filter-${fieldName}`}
-                className="form-control studylist-search"
+                className="form__field"
                 value={values[fieldName]}
                 onChange={e => onValueChange(fieldName, e.target.value)}
               />
             )}
             {inputType === 'date-range' && (
               // https://github.com/airbnb/react-dates
-              <CustomDateRangePicker
+              <input
                 // Required
+                className="form__field"
+                type='date'
+
                 startDate={getDateEntry(studyDateFrom, defaultStartDate)}
                 startDateId="start-date"
                 endDate={getDateEntry(studyDateTo, defaultEndDate)}
