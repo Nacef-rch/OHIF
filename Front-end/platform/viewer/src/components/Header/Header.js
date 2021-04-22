@@ -69,7 +69,7 @@ function Header(props) {
         <div className="header-left-box">
 
           <div className='logo'>
-          <label>STRIVERS</label>
+          <label>Medzone</label>
 </div>
 
         </div>

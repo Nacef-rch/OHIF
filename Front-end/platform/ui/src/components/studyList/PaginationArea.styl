@@ -9,8 +9,13 @@
 
   select
     margin: 5px
-    background-color: var(--primary-background-color)
-    color: white
+    border-radius: 5px
+    padding-top: 0.3rem
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    border: 2px solid #262ebf;
+    background-color: #fff
+    color: #262ebf
 
 
   .rows-dropdown
@@ -47,17 +52,20 @@
 
       button
         padding: 4px 8px
-        background-color: var(--primary-background-color)
-        border-color: var(--ui-gray)
-        color: var(--ui-gray-darkest)
-        color: white
+        background-color: #262ebf
+        
+        color:#fff
+        
         text-decoration: none
 
         &:hover:enabled
-          color: var(--active-color)
+          color: #fff
+          background-color: #141b97;
+          
 
       .active
         button
-          background-color: var(--ui-gray)
+          background-color: #141b97
           border-color: #ddd
           color: white
+

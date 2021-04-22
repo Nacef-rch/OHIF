@@ -70,7 +70,7 @@ class TablePagination extends PureComponent {
   renderRowsPerPageDropdown() {
     return (
       <div className="form-inline form-group rows-per-page">
-        <span>{this.props.t('Show')}</span>
+        
         <select
           onChange={this.onRowsPerPageChange}
           defaultValue={this.props.rowsPerPage}

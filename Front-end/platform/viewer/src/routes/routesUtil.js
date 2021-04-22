@@ -40,6 +40,12 @@ const Auth = asyncComponent(() =>
         '../connectedComponents/Auth.js'
     )
 );
+const AddPatient = asyncComponent(() =>
+    import (
+        /* webpackChunkName: "ViewerLocalFileData" */
+        '../connectedComponents/AddPatient.js'
+    )
+);
 
 const AuthSignup = asyncComponent(() =>
     import (
@@ -66,6 +72,10 @@ const ROUTES_DEF = {
         auth: {
             path: '/',
             component: Auth,
+        },
+        addPatient: {
+            path: '/add-patient',
+            component: AddPatient,
         },
         authsignup: {
             path: '/auth/signup',

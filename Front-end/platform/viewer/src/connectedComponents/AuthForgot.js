@@ -15,7 +15,7 @@ class AuthForgot extends Component {
             <div className="card-forgot">
         <div className="block">
             <div className="input-t">
-                <div classeName="top-login">
+                <div className="top-login">
                 <label className="text-forgot"><center>Forgot Password</center></label>
                 </div>
                 <div className="content">
@@ -24,24 +24,24 @@ class AuthForgot extends Component {
 
 
              </div>
-             <div classeName="footer-login ">
+             <div className="footer-login ">
 
 
 
-             <button onClick={() => this.nextPath('/')}>Send</button>
+             <button className='btn-first' onClick={() => this.nextPath('/')}>Send</button>
 
 
              </div>
 
              </div>
 
-             <div className="hr"></div>
+             <div className="hrl"></div>
              <div className="align">
-             <div classeName="create-account">
-             <a onClick={() => this.nextPath('/')}>Log In</a>
+             <div className="create-account">
+             <span onClick={() => this.nextPath('/')}>Log In</span>
 
              </div>
-             <div classeName="create-account">
+             <div className="create-account">
 
              </div>
              </div>

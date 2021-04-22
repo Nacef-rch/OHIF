@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React, { Component } from 'react';
 import { withRouter  } from "react-router-dom";
+
 import axios from 'axios';
 import './auth.css'
 
@@ -41,7 +42,7 @@ class Auth extends Component {
             <div className="card-login">
         <div className="block">
             <div className="input-t">
-                <div classeName="top-login">
+                <div className="top-login">
                 <label className="text"><center>Log In</center></label>
                 </div>
                 <div className="content">
@@ -50,24 +51,24 @@ class Auth extends Component {
 
              <input type="password" className="form__field" placeholder="Password" name="password" onChange={this. handleChange}></input>
              </div>
-             <div classeName="footer-login ">
+             <div className="footer-login ">
 
 
 
-             <button onClick={this.handleSubmit}>Log In</button>
+             <button className='btn-first' onClick={this.handleSubmit}>Log In</button >
 
 
              </div>
 
              </div>
 
-             <div className="hr"></div>
+             <div className="hrl"></div>
              <div className="align">
-             <div classeName="create-account">
-             <a onClick={() => this.nextPath('/auth/signup')}>Create an account</a>
-              <a onClick={() => this.nextPath('/auth/forgot')}>Forgot password?</a>
+             <div className="create-account">
+             <span onClick={() => this.nextPath('/auth/signup')}>Create an account</span>
+              <span onClick={() => this.nextPath('/auth/forgot')}>Forgot password?</span>
              </div>
-             <div classeName="create-account">
+             <div className="create-account">
 
              </div>
              </div>

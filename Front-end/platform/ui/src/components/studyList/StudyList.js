@@ -1,11 +1,12 @@
 import './StudyList.styl';
-
+import {Route  } from 'react-router-dom';
 import React from 'react';
 import classNames from 'classnames';
 import TableSearchFilter from './TableSearchFilter.js';
 import PropTypes from 'prop-types';
 import { StudyListLoadingText } from './StudyListLoadingText.js';
 import { useTranslation } from 'react-i18next';
+import {Icon} from '@ohif/ui'
 
 const getContentFromUseMediaValue = (
   displaySize,
@@ -43,61 +44,21 @@ function StudyList(props) {
 
   const largeTableMeta = [
     {
-      displayText: t('PatientName'),
-      fieldName: 'PatientName',
+      displayText: t('Search'),
+      fieldName: 'allFields',
       inputType: 'text',
-      size: 330,
+      size: 100,
     },
-    {
-      displayText: t('MRN'),
-      fieldName: 'PatientID',
-      inputType: 'text',
-      size: 378,
-    },
-    {
-      displayText: t('AccessionNumber'),
-      fieldName: 'AccessionNumber',
-      inputType: 'text',
-      size: 180,
-    },
-    {
-      displayText: t('StudyDate'),
-      fieldName: 'StudyDate',
-      inputType: 'date-range',
-      size: 300,
-    },
-    {
-      displayText: t('Modality'),
-      fieldName: 'modalities',
-      inputType: 'text',
-      size: 114,
-    },
-    {
-      displayText: t('StudyDescription'),
-      fieldName: 'StudyDescription',
-      inputType: 'text',
-      size: 335,
-    },
+  
+   
   ];
 
   const mediumTableMeta = [
-    {
-      displayText: `${t('PatientName')} / ${t('MRN')}`,
-      fieldName: 'patientNameOrId',
+   {
+      displayText: t('Search'),
+      fieldName: 'allFields',
       inputType: 'text',
-      size: 250,
-    },
-    {
-      displayText: t('Description'),
-      fieldName: 'accessionOrModalityOrDescription',
-      inputType: 'text',
-      size: 350,
-    },
-    {
-      displayText: t('StudyDate'),
-      fieldName: 'StudyDate',
-      inputType: 'date-range',
-      size: 300,
+      size: 100,
     },
   ];
 
@@ -110,11 +71,14 @@ function StudyList(props) {
     },
   ];
 
+ 
   const tableMeta = getContentFromUseMediaValue(
     displaySize,
     { large: largeTableMeta, medium: mediumTableMeta, small: smallTableMeta },
     smallTableMeta
   );
+
+ 
 
   const totalSize = tableMeta
     .map(field => field.size)
@@ -136,7 +100,7 @@ function StudyList(props) {
 
           <label >{long} StudyLists </label>
           </div>
-          <div>
+          <div className='input-align'>
           <TableSearchFilter
             meta={tableMeta}
             values={filterValues}
@@ -146,9 +110,16 @@ function StudyList(props) {
             sortDirection={sort.direction}
             studyListDateFilterNumDays={studyListDateFilterNumDays}
           />
-          </div>
+
+          <Route render={({ history}) => (
+           <button className='btn-study'onClick={() => { history.push('/add-patient') }} ><Icon className='icon' name='plus' />Patient</button>
+           )} />
+           </div>
+         
         </div>
+        
       </div>
+      <div className='hr'></div>
       <div className="card" data-cy="study-list-results">
         {/* I'm not in love with this approach, but it's the quickest way for now
          *
@@ -381,4 +352,4 @@ TableRow.defaultProps = {
   isHighlighted: false,
 };
 
-export { StudyList };
+export {StudyList};

@@ -83,22 +83,24 @@ function TableSearchFilter(props) {
 
         return (
           <div key={`${fieldName}-${i}`} style={{display:'inline-block'}}>
-            <label
+            {/*<label
               htmlFor={`filter-${fieldName}`}
               onClick={() => onSort(fieldName)}
             >
               {`${displayText}`}
               <Icon name={sortIcon} style={{ fontSize: '12px' }} />
-            </label>
+            </label>*/}
             {inputType === 'text' && (
-              <input
+             <div className='input-align'>
+             <input
                 type="text"
-                placeholder='Filtrer'
+                placeholder='Search'
                 id={`filter-${fieldName}`}
                 className="form__field"
                 value={values[fieldName]}
                 onChange={e => onValueChange(fieldName, e.target.value)}
               />
+              </div>
             )}
             {inputType === 'date-range' && (
               // https://github.com/airbnb/react-dates

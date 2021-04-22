@@ -45,7 +45,7 @@ class AuthSignup extends Component {
             <div className="card-signup">
         <div className="block">
             <div className="input-t">
-                <div classeName="top-login">
+                <div className="top-login">
                 <label className="text"><center>Sign Up</center></label>
                 </div>
                 <div className="content">
@@ -59,24 +59,23 @@ class AuthSignup extends Component {
              <input type="password" className="form__field" placeholder="Password"name="password" onChange={this. handleChange}></input>
               <input type="password" className="form__field" placeholder="Confirm Password"></input>
              </div>
-             <div classeName="footer-login ">
+             <div className="footer-login ">
 
-      <input type="radio" ></input>I'm a doctor
+      
+             <button className='btn-first' onClick={this.handleSubmit} >Sign up</button>
 
-             <button onClick={this.handleSubmit} >Log In</button>
-
-
-             </div>
 
              </div>
 
-             <div className="hr"></div>
+             </div>
+
+             <div className="hrl"></div>
              <div className="align">
-             <div classeName="create-account">
-             <a onClick={() => this.nextPath('/')}>Log In</a>
+             <div className="create-account">
+             <span onClick={() => this.nextPath('/')}>Log In</span>
 
              </div>
-             <div classeName="create-account">
+             <div className="create-account">
 
              </div>
              </div>
