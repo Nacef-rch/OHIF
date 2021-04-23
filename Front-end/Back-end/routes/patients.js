@@ -20,13 +20,12 @@ router.post('/addPatient', async(req,res)=>{
 
     // if(req.user.user.role != "admin") return res.status(401).send({status:false})
     
-   const nbr = await Patient.countDocuments({});
-   const num = nbr + 1;
+//    const nbr = await Patient.countDocuments({});
+//    const num = nbr + 1;
     
     const patient=new Patient({
-       id:num,
+       id:req.body.id,
        nom:req.body.nom,
-       prenom:req.body.prenom,
        description:req.body.description,
        imageList :req.body.imageList
 

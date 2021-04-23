@@ -6,9 +6,8 @@ const Schema= mongoose.Schema;
 
 const patientSchema = new Schema({
     
-    id: {type: Number, default: ""},
+    id: {type: String, default: ""},
     nom: {type: String, default: ""},
-    prenom: {type: String, default: ""},
     description : {type: String, default: ""},
     imageList : [{
      imageUrl:{type:String,required:true},
@@ -28,9 +27,9 @@ const patientSchema = new Schema({
     
     const schema=Joi.object({
     
+        id: Joi.string().required(),
         nom: Joi.string().required(),
-        prenom: Joi.string().required(),
-        description: Joi.string().allow('', null),
+        description: Joi.string().required(),
         imageList:Joi.array().items(imageItem)
         
     })
