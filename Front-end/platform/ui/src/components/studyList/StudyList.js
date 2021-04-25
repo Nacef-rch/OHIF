@@ -30,6 +30,7 @@ function StudyList(props) {
   const {
     isLoading,
     hasError,
+    studies2,
     studies,
     long,
     sort,
@@ -37,6 +38,7 @@ function StudyList(props) {
     filterValues,
     onFilterChange: handleFilterChange,
     onSelectItem: handleSelectItem,
+    onSelectItem2: handleSelectItem2,
     studyListDateFilterNumDays,
     displaySize,
   } = props;
@@ -98,7 +100,7 @@ function StudyList(props) {
         <div className="align-head">
           <div className="long">
 
-          <label >{long} StudyLists </label>
+          <label >{long} PATIENTS </label>
           </div>
           <div className='input-align'>
           <TableSearchFilter
@@ -145,8 +147,25 @@ function StudyList(props) {
             </div>
           </div>
         )}
+
+        {!isLoading &&
+          studies2.map((study, index) => (
+            <TableRow
+              key={`${index}`}
+              onClick={StudyInstanceUID => handleSelectItem2(StudyInstanceUID)}
+              AccessionNumber={study.AccessionNumber || ''}
+              modalities={study.modalities || ''}
+              PatientID={study.id || ''}
+              PatientName={study.nom || ''}
+              StudyDate={study.StudyDate || ''}
+              series={study.imageList || '' }
+              StudyDescription={study.description || ''}
+              StudyInstanceUID={study.id}
+              displaySize={displaySize}
+            />
+          ))}
         {/* EMPTY */}
-        {!isLoading && !studies.length && (
+        {!isLoading && !studies.length && !studies2.length &&(
           <div className="no-hover">
             <div colSpan={tableMeta.length}>
               <div className="notFound">{t('No matching results')}</div>
@@ -169,6 +188,9 @@ function StudyList(props) {
               displaySize={displaySize}
             />
           ))}
+         
+
+
       </div>
     </div>
   ) : null;
@@ -178,7 +200,9 @@ StudyList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   hasError: PropTypes.bool.isRequired,
   studies: PropTypes.array.isRequired,
+  studies2: PropTypes.any.isRequired,
   onSelectItem: PropTypes.func.isRequired,
+   onSelectItem2: PropTypes.func.isRequired,
   // ~~ SORT
   sort: PropTypes.shape({
     fieldName: PropTypes.string,

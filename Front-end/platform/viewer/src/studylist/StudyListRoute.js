@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import OHIF from '@ohif/core';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios'
 import {
   StudyList,
   PageToolbar,
@@ -47,7 +48,12 @@ function StudyListRoute(props) {
     //
     allFields: '',
   });
+
+
+  
+
   const [studies, setStudies] = useState([]);
+  const [studies2, setStudies2] = useState([]);
   const [searchStatus, setSearchStatus] = useState({
     isSearchingForStudies: false,
     error: null,
@@ -70,6 +76,9 @@ function StudyListRoute(props) {
   const debouncedSort = useDebounce(sort, 200);
   const debouncedFilters = useDebounce(filterValues, 250);
 
+
+
+
   // Google Cloud Adapter for DICOM Store Picking
   const { appConfig = {} } = appContext;
   const isGoogleCHAIntegrationEnabled =
@@ -82,6 +91,14 @@ function StudyListRoute(props) {
   // Watches filters and sort, debounced
   useEffect(
     () => {
+      axios.get('http://localhost:5000/patients')
+    .then (res =>{
+      const data =res.data;
+      console.log('data : ',data)
+      setStudies2(data);
+      console.log('studies 2 : ',studies2)
+    })
+
       const fetchStudies = async () => {
         try {
           setSearchStatus({ error: null, isSearchingForStudies: true });
@@ -96,6 +113,7 @@ function StudyListRoute(props) {
           );
 
           setStudies(response);
+          
           setSearchStatus({ error: null, isSearchingForStudies: false });
         } catch (error) {
           console.warn(error);
@@ -136,7 +154,8 @@ function StudyListRoute(props) {
       setSearchStatus({ isSearchingForStudies: false, error });
     }
   };
-
+  
+  console.log('studies  ::' ,studies);
   if (searchStatus.error) {
     return <div>Error: {JSON.stringify(searchStatus.error)}</div>;
   } else if (studies === [] && !activeModalId) {
@@ -235,7 +254,14 @@ function StudyListRoute(props) {
           isLoading={searchStatus.isSearchingForStudies}
           hasError={searchStatus.error === true}
           // Rows
+          studies2={studies2}
           studies={studies}
+
+           onSelectItem2={studyInstanceUID => {
+            const viewerPath = `/viewer/${studyInstanceUID}`;
+            history.push(viewerPath);
+          }}
+          
           onSelectItem={studyInstanceUID => {
             const viewerPath = RoutesUtil.parseViewerPath(appConfig, server, {
               studyInstanceUIDs: studyInstanceUID,
@@ -243,7 +269,7 @@ function StudyListRoute(props) {
             history.push(viewerPath);
           }}
           // Table Header
-          long={studies.length}
+          long={studies2.length+studies.length}
           sort={sort}
           onSort={handleSort}
           filterValues={filterValues}

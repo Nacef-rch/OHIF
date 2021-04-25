@@ -47,6 +47,8 @@ class AddPatient extends Component {
   };
  
 handleChangeFile =(e) =>{
+
+  this.setState(null);
     console.log(e.target.files.length)
    for (let file of e.target.files) 
     {
@@ -119,9 +121,9 @@ handleChangeFile =(e) =>{
   onClick={() => this.fileInput.current.click()}
 >Choose File</button>
 
-       {/*this.state.imageList.length ? (<div className='files'>
+       {this.state.imageList.length ? (<div className='files'>
             {this.state.imageList.length} files added
-    </div>) : (null)*/}
+    </div>) : (null)}
 </div>
       </div>
               <div className="hrl"></div>
