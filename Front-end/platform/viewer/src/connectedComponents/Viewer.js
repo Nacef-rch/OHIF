@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import ReactToPrint from 'react-to-print';
+
 import OHIF, { MODULE_TYPES, DICOMSR } from '@ohif/core';
 import { withDialog } from '@ohif/ui';
 import moment from 'moment';
@@ -13,6 +15,7 @@ import SidePanel from './../components/SidePanel.js';
 import ErrorBoundaryDialog from './../components/ErrorBoundaryDialog';
 import { extensionManager } from './../App.js';
 
+
 // Contexts
 import WhiteLabelingContext from '../context/WhiteLabelingContext.js';
 import UserManagerContext from '../context/UserManagerContext';
@@ -20,6 +23,7 @@ import AppContext from '../context/AppContext';
 
 import './Viewer.css';
 import { finished } from 'stream';
+import { throws } from 'assert';
 
 class Viewer extends Component {
   static propTypes = {
@@ -84,6 +88,8 @@ class Viewer extends Component {
       },
     });
   }
+
+
 
   state = {
     isLeftSidePanelOpen: true,
@@ -214,6 +220,20 @@ class Viewer extends Component {
     }
   }
 
+
+  MyDocument = () => (
+  <div>
+    <div>
+      <div >
+        <p>{this.PatientID}</p>
+      </div>
+      <div >
+        <p>{this.SeriesDescription}</p>
+      </div>
+    </div>
+  </div>
+);
+
   render() {
     let VisiblePanelLeft, VisiblePanelRight;
     const panelExtensions = extensionManager.modules[MODULE_TYPES.PANEL];
@@ -258,7 +278,7 @@ class Viewer extends Component {
             </UserManagerContext.Consumer>
           )}
         </WhiteLabelingContext.Consumer>
-
+     
         {/* TOOLBAR */}
         <ErrorBoundaryDialog context="ToolbarRow">
           <ToolbarRow
@@ -297,6 +317,7 @@ class Viewer extends Component {
             }}
             studies={this.props.studies}
           />
+        
         </ErrorBoundaryDialog>
 
         {/*<ConnectedStudyLoadingMonitor studies={this.props.studies} />*/}
@@ -307,6 +328,16 @@ class Viewer extends Component {
           {/* LEFT */}
           <ErrorBoundaryDialog context="LeftSidePanel">
             <SidePanel from="left" isOpen={this.state.isLeftSidePanelOpen}>
+                 <div className='print'>
+                 <ReactToPrint 
+          trigger={() => {
+            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+            // to the root node of the returned component as it will be overwritten.
+            return <button>Generate report</button>;
+          }}
+          content={() => this.componentRef}
+        />
+        </div>
               {VisiblePanelLeft ? (
                 <VisiblePanelLeft
                   viewports={this.props.viewports}
@@ -314,11 +345,14 @@ class Viewer extends Component {
                   activeIndex={this.props.activeViewportIndex}
                 />
               ) : (
+                <div>
                 <ConnectedStudyBrowser
                   studies={this.state.thumbnails}
                   studyMetadata={this.props.studies}
                 />
+   </div>
               )}
+               
             </SidePanel>
           </ErrorBoundaryDialog>
 
@@ -345,7 +379,25 @@ class Viewer extends Component {
               )}
             </SidePanel>
           </ErrorBoundaryDialog>
+
+          
         </div>
+                                    
+       
+       <div className='report' ref={el => (this.componentRef = el)} >
+         <div className='titre'>
+                <h2> REPORT PATIENT </h2>
+               
+        {this.props.studies.map(study => (
+          
+       <div>{console.log('data :',study)} <p><b>Patient ID :</b>{study.PatientID}</p>
+       <p><b>Patient Name :</b>{study.PatientName}</p>
+        <p><b>Description :</b>{study.StudyDescription}</p></div>
+        ))}
+         </div>
+      </div>
+  
+     
       </>
     );
   }

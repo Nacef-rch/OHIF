@@ -8,3 +8,45 @@
   color: var(--text-secondary-color);
   font-size: 30px;
 }
+
+button {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  color: #fff;
+  background-color: #262ebf;
+  border: 2px solid #5c5d6e;
+  font-size: 20px;
+  border-radius: 40px;
+  margin-top: 20px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #151ca3;
+  color: #fff;
+}
+
+.print {
+  background-color: black;
+}
+
+.report {
+  background-color: #fff;
+  height: 100%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titre{
+  display: block;
+}
+h2{
+  text-align: center;
+  color:brown;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
