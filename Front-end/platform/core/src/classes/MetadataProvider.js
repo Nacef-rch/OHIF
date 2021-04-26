@@ -273,12 +273,12 @@ class MetadataProvider {
       case WADO_IMAGE_LOADER_TAGS.VOI_LUT_MODULE:
         const { WindowCenter, WindowWidth } = instance;
 
-        const windowCenter = Array.isArray(WindowCenter)
-          ? WindowCenter
-          : [WindowCenter];
-        const windowWidth = Array.isArray(WindowWidth)
-          ? WindowWidth
-          : [WindowWidth];
+        const windowCenter = Array.isArray(Number(WindowCenter))
+          ? Number(WindowCenter) 
+          : Number([WindowCenter]);
+        const windowWidth = Array.isArray(Number(WindowWidth))
+          ? Number(WindowWidth)
+          : Number([WindowWidth]);
 
         metadata = {
           windowCenter,

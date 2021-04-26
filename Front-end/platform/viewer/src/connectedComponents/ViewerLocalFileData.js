@@ -110,6 +110,8 @@ class ViewerLocalFileData extends Component {
       return <div>Error: {JSON.stringify(this.state.error)}</div>;
     }
 
+    
+
     return (
       <Dropzone onDrop={onDrop} noClick>
         {({ getRootProps, getInputProps }) => (

@@ -1,6 +1,6 @@
 #viewer {
   margin-top: 100px;
-  background-color: #262ebf;
+  background-color: #111;
   width: 100%;
 }
 
@@ -9,24 +9,23 @@
   font-size: 30px;
 }
 
-button {
-  padding-left: 3rem;
-  padding-right: 3rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-  color: #fff;
-  background-color: #262ebf;
-  border: 2px solid #5c5d6e;
+.rep {
+  height: 135px;
+  width: 210px;
+  color: #33A795;
+  background-color: black;
+  border: 1px solid #33A795;
   font-size: 20px;
-  border-radius: 40px;
+  border-radius: 12px;
   margin-top: 20px;
-  margin-left: 30px;
+  margin-left: 43px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
-button:hover {
-  background-color: #151ca3;
-  color: #fff;
+.rep:hover {
+  background-color: black;
+  color: #33A795;
 }
 
 .print {
@@ -40,13 +39,16 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: -1;
 }
-.titre{
+
+.titre {
   display: block;
 }
-h2{
+
+h2 {
   text-align: center;
-  color:brown;
+  color: brown;
   font-size: 30px;
   margin-bottom: 50px;
 }

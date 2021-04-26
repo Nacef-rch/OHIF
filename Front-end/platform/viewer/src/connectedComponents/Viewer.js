@@ -333,7 +333,7 @@ class Viewer extends Component {
           trigger={() => {
             // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
             // to the root node of the returned component as it will be overwritten.
-            return <button>Generate report</button>;
+            return <button className="rep">REPORT</button>;
           }}
           content={() => this.componentRef}
         />
@@ -382,8 +382,8 @@ class Viewer extends Component {
 
           
         </div>
-                                    
-       
+      <div style={{backgroundColor:'black'}}>                            
+       <div style={{backgroundColor:'#111', zIndex:'1', opacity:'0%'}}>
        <div className='report' ref={el => (this.componentRef = el)} >
          <div className='titre'>
                 <h2> REPORT PATIENT </h2>
@@ -395,8 +395,10 @@ class Viewer extends Component {
         <p><b>Description :</b>{study.StudyDescription}</p></div>
         ))}
          </div>
+         <p>{console.log('musre',OHIF.Measurements)}</p>
       </div>
-  
+  </div>
+  </div> 
      
       </>
     );

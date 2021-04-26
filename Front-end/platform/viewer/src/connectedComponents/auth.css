@@ -167,6 +167,7 @@ a {
   background-color: #fff;
   border: 2px solid #474747;
   cursor: pointer;
+  
 }
 
 .upload-btn {
@@ -180,6 +181,7 @@ a {
   background-color: #45b5a5;
   border: 2px solid #fff;
   cursor: pointer;
+  
 }
 
 .upload-btn:hover {
